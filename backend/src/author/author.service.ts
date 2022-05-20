@@ -19,7 +19,7 @@ export class AuthorService {
   async findAll(): Promise<Author[]> {
     return this.authorsRepository.find();
   }
-  update(id: number, author: UpdateAuthorDto) {
+  async update(id: number, author: UpdateAuthorDto) {
     return this.authorsRepository.update(id, author);
   }
 }
