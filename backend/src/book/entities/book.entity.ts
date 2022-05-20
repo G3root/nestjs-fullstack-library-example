@@ -17,4 +17,7 @@ export class Book {
 
   @Column()
   stock: number;
+
+  @ManyToOne(() => Author, (author) => author.books)
+  author: Author;
 }
