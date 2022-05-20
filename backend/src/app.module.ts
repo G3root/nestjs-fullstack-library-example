@@ -12,7 +12,7 @@ import { Book } from './book/entities/book.entity';
     BookModule,
     TypeOrmModule.forRoot({
       type: 'sqlite',
-      database: 'libraryDB',
+      database: 'library.db',
       entities: [Author, Book],
       synchronize: true,
     }),
