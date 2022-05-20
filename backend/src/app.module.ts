@@ -4,6 +4,7 @@ import { AppService } from './app.service';
 import { BookModule } from './book/book.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Connection } from 'typeorm';
+import { AuthorModule } from './author/author.module';
 
 @Module({
   imports: [
@@ -13,6 +14,7 @@ import { Connection } from 'typeorm';
       database: 'libraryDB',
       synchronize: true,
     }),
+    AuthorModule,
   ],
   controllers: [AppController],
   providers: [AppService],
