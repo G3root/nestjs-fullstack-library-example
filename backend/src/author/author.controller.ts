@@ -10,4 +10,8 @@ export class AuthorController {
   create(@Body() createAuthorDto: CreateAuthorDto): Promise<Author> {
     return this.authorService.create(createAuthorDto);
   }
+  @Get()
+  findAll(): Promise<Author[]> {
+    return this.authorService.findAll();
+  }
 }
