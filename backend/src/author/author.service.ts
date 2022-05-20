@@ -1,4 +1,19 @@
 import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { CreateAuthorDto } from './dto/create-author.dto';
+import { Author } from './entities/author.entity';
 
 @Injectable()
-export class AuthorService {}
+export class AuthorService {
+  constructor(
+    @InjectRepository(Author)
+    private readonly authorsRepository: Repository<Author>,
+  ) {}
+
+  create(createAuthorDto: CreateAuthorDto): Promise<Author> {
+    const author = new Author();
+    author.name = createAuthorDto.name;
+    return this.authorsRepository.save(author);
+  }
+}
