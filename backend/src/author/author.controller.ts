@@ -30,4 +30,8 @@ export class AuthorController {
   findOne(@Param(':id') id: number): Promise<Author> {
     return this.authorService.findByID(id);
   }
+  @Delete(':id')
+  delete(@Param(':id') id: number) {
+    return this.authorService.delete(id);
+  }
 }
