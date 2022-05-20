@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { CreateAuthorDto } from './dto/create-author.dto';
+import { CreateAuthorDto, UpdateAuthorDto } from './dto';
 import { Author } from './entities/author.entity';
 
 @Injectable()
@@ -18,5 +18,8 @@ export class AuthorService {
   }
   async findAll(): Promise<Author[]> {
     return this.authorsRepository.find();
+  }
+  update(id: number, author: UpdateAuthorDto) {
+    return this.authorsRepository.update(id, author);
   }
 }
