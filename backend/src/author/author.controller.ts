@@ -26,4 +26,8 @@ export class AuthorController {
   update(@Param('id') id: number, @Body() updateAuthorDto: UpdateAuthorDto) {
     return this.authorService.update(id, updateAuthorDto);
   }
+  @Get(':id')
+  findOne(@Param(':id') id: number): Promise<Author> {
+    return this.authorService.findByID(id);
+  }
 }
