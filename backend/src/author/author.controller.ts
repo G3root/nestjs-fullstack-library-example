@@ -27,11 +27,11 @@ export class AuthorController {
     return this.authorService.update(id, updateAuthorDto);
   }
   @Get(':id')
-  findOne(@Param(':id') id: number): Promise<Author> {
+  findOne(@Param('id') id: number): Promise<Author> {
     return this.authorService.findByID(id);
   }
   @Delete(':id')
-  delete(@Param(':id') id: number) {
+  delete(@Param('id') id: number) {
     return this.authorService.delete(id);
   }
 }
