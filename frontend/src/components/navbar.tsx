@@ -1,23 +1,23 @@
-import Link from "next/link";
 import * as React from "react";
+import AppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
 
 export interface NavbarProps {}
 
 export function Navbar(props: NavbarProps) {
   return (
-    <nav className="mx-auto px-4 sm:px-6 lg:px-8">
-      <div className="border-b border-gray-200">
-        <div className="h-16 flex items-center justify-between">
-          <div>
-            <Link href="/">
-              <a className="font-bold text-lg">Library portal</a>
-            </Link>
-          </div>
-          <div>
-            <button>sign-in</button>
-          </div>
-        </div>
-      </div>
-    </nav>
+    <Box sx={{ flexGrow: 1 }}>
+      <AppBar position="static">
+        <Toolbar>
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+            Library portal
+          </Typography>
+          <Button color="inherit">Login</Button>
+        </Toolbar>
+      </AppBar>
+    </Box>
   );
 }
