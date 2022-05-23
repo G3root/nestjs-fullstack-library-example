@@ -13,13 +13,13 @@ import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 
-import { useBooks } from "~/hooks";
+import { useHomeData } from "~/hooks";
 import { Link } from "./link";
 
 export interface BooksTableProps {}
 
 export function BooksTable(props: BooksTableProps) {
-  const { data, mutate } = useBooks();
+  const { data, mutate } = useHomeData();
 
   const handleDelete = async (id: number) => {
     const req = await fetch(`http://localhost:3000/book/${id}`, {

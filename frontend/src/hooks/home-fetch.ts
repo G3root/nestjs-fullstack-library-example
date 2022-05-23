@@ -1,7 +1,7 @@
 import useSWR from "swr";
 import { fetcher } from "~/lib";
 
-interface useBooksData {
+interface useHomeDataInterface {
   books: {
     id: number;
     title: string;
@@ -20,8 +20,8 @@ interface useBooksData {
   }[];
 }
 
-export function useBooks() {
-  const { data, error, mutate } = useSWR<useBooksData>(
+export function useHomeData() {
+  const { data, error, mutate } = useSWR<useHomeDataInterface>(
     "http://localhost:3000/home-page",
     fetcher
   );
