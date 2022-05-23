@@ -1,10 +1,10 @@
 import type { NextPage } from "next";
-import { Navbar } from "~/components";
+import { BooksTable } from "~/components";
 
 const Home: NextPage = () => {
   return (
     <>
-      <Navbar />
+      <BooksTable />
     </>
   );
 };
