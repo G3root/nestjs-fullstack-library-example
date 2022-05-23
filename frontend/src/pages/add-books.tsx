@@ -33,11 +33,9 @@ const AddBooks: NextPage = () => {
   } = useForm<Inputs>();
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     const cleanedData = {
-      title: "Blood on the Marsh",
-      description: "Detective Susan Holden",
-      ISBN: "978-3-16-148410-0",
-      stock: 20,
-      author: 1,
+      ...data,
+      stock: Number(data.stock),
+      author: Number(data.author),
     };
 
     const req = await fetch("http://localhost:3000/book", {
