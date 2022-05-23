@@ -12,6 +12,7 @@ import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
+import EditIcon from "@mui/icons-material/Edit";
 
 import { useHomeData } from "~/hooks";
 import { Link } from "./link";
@@ -52,6 +53,7 @@ export function AuthorsTable(props: AuthorsTableProps) {
               <TableCell>author name</TableCell>
               <TableCell align="right">author id</TableCell>
               <TableCell align="right">delete</TableCell>
+              <TableCell align="right">edit</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -73,6 +75,15 @@ export function AuthorsTable(props: AuthorsTableProps) {
                         aria-label="delete"
                       >
                         <DeleteIcon />
+                      </IconButton>
+                    </TableCell>
+                    <TableCell align="right">
+                      <IconButton
+                        component={Link}
+                        href={`edit/author/${author.id}`}
+                        aria-label="edit"
+                      >
+                        <EditIcon />
                       </IconButton>
                     </TableCell>
                   </TableRow>
