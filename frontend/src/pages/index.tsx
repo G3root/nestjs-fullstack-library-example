@@ -1,10 +1,13 @@
+import Box from "@mui/material/Box";
 import type { NextPage } from "next";
-import { BooksTable } from "~/components";
+import { AuthorsTable, BooksTable } from "~/components";
 
 const Home: NextPage = () => {
   return (
     <>
       <BooksTable />
+      <Box py="2rem" />
+      <AuthorsTable />
     </>
   );
 };
