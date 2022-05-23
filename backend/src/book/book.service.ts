@@ -23,7 +23,7 @@ export class BookService {
   }
 
   async findAll(): Promise<Book[]> {
-    return this.booksRepository.find();
+    return this.booksRepository.find({ relations: ['author'] });
   }
 
   async findOne(id: number): Promise<Book> {
