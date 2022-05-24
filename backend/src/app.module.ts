@@ -9,6 +9,7 @@ import { Author } from './author/entities/author.entity';
 import { Book } from './book/entities/book.entity';
 import { HomePageModule } from './home-page/home-page.module';
 import { UserModule } from './user/user.module';
+import { AuthModule } from './auth/auth.module';
 @Module({
   imports: [
     BookModule,
@@ -21,6 +22,7 @@ import { UserModule } from './user/user.module';
     AuthorModule,
     HomePageModule,
     UserModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
