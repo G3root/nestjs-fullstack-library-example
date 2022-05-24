@@ -29,7 +29,19 @@ const LoginPage: NextPage = () => {
   } = useForm<Inputs>();
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    console.log(data);
+    const req = await fetch("http://localhost:3000/auth/signin", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+    const res = await req.json();
+
+    if (req.ok) {
+      localStorage.setItem("auth-token", res.access_token);
+      router.push("/");
+    }
   };
   return (
     <Container maxWidth="sm">
