@@ -1,4 +1,6 @@
+import * as React from "react";
 import useSWR from "swr";
+import { useLocalStorage } from "react-use";
 
 interface useUserData {
   id: number;
@@ -6,15 +8,9 @@ interface useUserData {
   email: string;
 }
 
-let token: any = null;
-if (typeof window !== "undefined") {
-  const data = localStorage.getItem("auth-token");
-  if (data) {
-    token = data;
-  }
-}
+const authKey = "auth-token";
 
-const fetcher = async (url: string, token: string) => {
+const fetcher = async (url: string, token: string, remove: () => void) => {
   const res = await fetch(url, {
     method: "GET",
     headers: {
@@ -25,7 +21,7 @@ const fetcher = async (url: string, token: string) => {
 
   if (!res.ok) {
     if (res.status === 401) {
-      localStorage.removeItem("auth-token");
+      remove();
     }
 
     const error: any = new Error("An error occurred while fetching the data.");
@@ -39,15 +35,25 @@ const fetcher = async (url: string, token: string) => {
 };
 
 export function useUser() {
-  const { data, error, mutate } = useSWR<useUserData[]>(
-    token ? "http://localhost:3000/user/me" : null,
-    (url) => fetcher(url, token)
+  const [token, setValue, remove] = useLocalStorage<null | string>(
+    authKey,
+    null,
+    { raw: true }
   );
+  const { data, error, mutate } = useSWR<useUserData>(
+    token ? "http://localhost:3000/user/me" : null,
+    (url) => fetcher(url, token as string, remove)
+  );
+  const logout = () => {
+    remove();
+    mutate();
+  };
 
   return {
     user: data,
     isLoading: !error && !data,
     isError: error,
     mutate,
+    logout,
   };
 }
