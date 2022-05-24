@@ -1,5 +1,5 @@
 import { ForbiddenException, Injectable } from '@nestjs/common';
-import { AuthDto, SignInDto } from './dto';
+import { SignUpDto, SignInDto } from './dto';
 import * as argon from 'argon2';
 import { jwtConstants } from './constants';
 import { JwtService } from '@nestjs/jwt';
@@ -14,7 +14,7 @@ export class AuthService {
     @InjectRepository(User)
     private readonly userRepository: Repository<User>,
   ) {}
-  async signup(dto: AuthDto) {
+  async signup(dto: SignUpDto) {
     const hash = await argon.hash(dto.password);
     try {
       const user = new User();
