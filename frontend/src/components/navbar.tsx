@@ -4,6 +4,7 @@ import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
+import { Link } from "./link";
 
 export interface NavbarProps {}
 
@@ -15,7 +16,9 @@ export function Navbar(props: NavbarProps) {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Library portal
           </Typography>
-          <Button color="inherit">Login</Button>
+          <Button component={Link} noLinkStyle href="/login" color="inherit">
+            Login
+          </Button>
         </Toolbar>
       </AppBar>
     </Box>
