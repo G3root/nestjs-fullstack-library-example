@@ -13,6 +13,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { useRouter } from "next/router";
 import MuiLink from "@mui/material/Link";
 import { Link } from "~/components";
+import { mutate } from "swr";
 
 type Inputs = {
   email: string;
@@ -40,6 +41,7 @@ const LoginPage: NextPage = () => {
 
     if (req.ok) {
       localStorage.setItem("auth-token", res.access_token);
+      mutate("http://localhost:3000/user/me");
       router.push("/");
     }
   };
